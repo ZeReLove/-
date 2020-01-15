@@ -5,7 +5,6 @@
 
     <FrameLayout
     android:id="@+id/parse_text_view"
-    android:name="com.example.myapplication.RecyclerViewFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 

@@ -1,7 +1,16 @@
 package com.example.application
 
-class DataItems{
-    lateinit var name : String
-    var isEnable : Boolean = false
-    lateinit var text : String
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.list
+
+@Serializable
+data class DataItems(
+    var name : String,
+    var isEnable : Boolean?,
+    var text : String?
+)
+
+fun reverseParseItems(items : MutableList<DataItems>){
+    println(Json.stringify(DataItems.serializer().list, items))
 }

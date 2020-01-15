@@ -2,45 +2,55 @@ package com.example.application
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import org.json.JSONArray
-import org.json.JSONObject
-import java.io.BufferedReader
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.widget.Button
+import androidx.core.view.MenuItemCompat
+import androidx.lifecycle.*
 
 class MainActivity : AppCompatActivity() {
 
-    private var recyclerFragment: Fragment? = null
+    lateinit var model : MyViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        model = ViewModelProvider(this).get(MyViewModel()::class.java)
+        model.load(resources)
+
         setContentView(R.layout.activity_main)
-
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        recyclerFragment = CustomRecyclerView()
-        fragmentTransaction.add(R.id.inner_frame_layout, recyclerFragment!!)
-        fragmentTransaction.commit()
     }
 
-    fun parse() : JSONArray{
-        var f  = resources.openRawResource(R.raw.data)
-        val content = f.bufferedReader().use(BufferedReader::readText)
-        val obj = JSONArray(content)
-        return obj
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.menu, menu)
+        return true
     }
 
-    fun parse2() : MutableList<DataItems> {
-        val obj = parse()
-        val items = mutableListOf<DataItems>()
-        val item = JsonParser.parseItems(items, obj)
-        return item
+    override fun onPrepareOptionsMenu(menu: Menu): Boolean {
+        val actionViewItem: MenuItem = menu.findItem(R.id.item_button)
+        val v: View = MenuItemCompat.getActionView(actionViewItem)
+        val button = v.findViewById<Button>(R.id.button)
+
+        val items: MutableList<DataItems> = model.items
+
+        button.setOnClickListener(View.OnClickListener {
+            println(items)
+            reverseParseItems(items)
+
+        })
+        return super.onPrepareOptionsMenu(menu)
     }
 
-    fun changeJson(str : String, pos : Int){
-        val arrJson : JSONArray = parse()
-        val objJson : JSONObject = arrJson.getJSONObject(pos)
-        objJson.put("text", str)
-        //println(objJson)
-    }
+
+
+
+
+
+
+    //TODO: move to CustomRecyclerView
+
 }
 
