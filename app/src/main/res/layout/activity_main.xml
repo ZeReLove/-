@@ -6,14 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-<!--    <data>-->
-<!--        <import android:type="android.view.View"/>-->
-<!--        <variable-->
-<!--            android:name="viewModel"-->
-<!--            android:type="com.example.application.MyViewModel">-->
-
-<!--        </variable>-->
-<!--    </data>-->
 
     <FrameLayout
         android:layout_width="match_parent"

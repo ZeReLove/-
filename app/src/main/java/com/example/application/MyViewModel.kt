@@ -15,12 +15,22 @@ class MyViewModel : ViewModel() {
         }
     }
 
-    fun changeIsEnable(position : Int, isChecked : Boolean){
-        items[position].isEnable = isChecked
+    fun changeIsEnable(isChecked : Boolean, dataItem: DataItems){
+        when(dataItem) {
+            is DataItemBool -> dataItem.isEnabled = isChecked
+        }
     }
 
-    fun changeText(position: Int, s: CharSequence?){
-        items[position].text = s.toString()
+    fun changeText(s: CharSequence?, dataItem: DataItems){
+        when(dataItem){
+            is DataItemText -> dataItem.text = s.toString()
+        }
+    }
+
+    fun changeSelected(index: Int, dataItem: DataItems){
+        when(dataItem){
+            is DataItemArray ->dataItem.selected = index
+        }
     }
 
     private fun parse(resources: Resources) : JSONArray {

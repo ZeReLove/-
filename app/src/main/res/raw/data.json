@@ -12,6 +12,11 @@
     "isEnabled": false
   },
   {
+    "name": "sleep time",
+    "elements": [-1, 15],
+    "selected": 0
+  },
+  {
     "name": "version",
     "text": "v0.1.0 watchdog"
   }

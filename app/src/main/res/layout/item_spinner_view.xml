@@ -13,13 +13,16 @@
         android:layout_height="wrap_content"
         android:textSize="24sp"
         android:textColor="@android:color/background_dark"/>
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/edit_text_view"
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/spinner"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:textSize="24sp"
-        android:inputType="text"
-        android:textColor="@android:color/background_dark"
-        android:layout_marginLeft="20dp"/>
-
+        android:layout_height="wrap_content"
+        android:textSize="24sp">
+    </androidx.appcompat.widget.AppCompatSpinner>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/selected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp">
+    </androidx.appcompat.widget.AppCompatTextView>
 </LinearLayout>
